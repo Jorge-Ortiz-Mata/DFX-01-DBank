@@ -1,0 +1,35 @@
+{
+  "canisters": {
+    "db_bank_one": {
+      "main": "src/db_bank_one/main.mo",
+      "type": "motoko"
+    },
+    "db_bank_one_assets": {
+      "dependencies": [
+        "db_bank_one"
+      ],
+      "frontend": {
+        "entrypoint": "src/db_bank_one_assets/src/index.html"
+      },
+      "source": [
+        "src/db_bank_one_assets/assets",
+        "dist/db_bank_one_assets/"
+      ],
+      "type": "assets"
+    }
+  },
+  "defaults": {
+    "build": {
+      "args": "",
+      "packtool": ""
+    }
+  },
+  "dfx": "0.9.3",
+  "networks": {
+    "local": {
+      "bind": "127.0.0.1:8000",
+      "type": "ephemeral"
+    }
+  },
+  "version": 1
+}
