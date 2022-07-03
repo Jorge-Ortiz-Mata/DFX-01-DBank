@@ -1,16 +1,17 @@
 import Debug "mo:base/Debug";
 
 actor DBank {
-  var name = "Jorge Ortiz";
-  let age = 25;
-  var number = 300;
+  // var name = "Jorge Ortiz";
+  // let age = 25;
+  stable var number: Nat = 300;
+  // making some changes
 
-  Debug.print(debug_show(name));
-  Debug.print(debug_show(age));
+  // Debug.print(debug_show(name));
+  // Debug.print(debug_show(age));
 
-  name := "Zaira Guevara";
+  // name := "Zaira Guevara";
 
-  Debug.print(debug_show(name));
+  // Debug.print(debug_show(name));
 
   public func topUp(amount: Nat) {
     number += amount;
@@ -27,6 +28,9 @@ actor DBank {
     }
   };
 
+  public query func getNumber(): async Nat {
+    return number;
+  };
 }
 
 /* 
@@ -48,5 +52,10 @@ actor DBank {
   statment in order to not make the application fail.
   Besides, we don't need to add 'debug_show' in order to show 
   messages.
+
+  Query method is declared in order to get some data. 
+
+  The 'stable' keyword means that the value of an variable will persist 
+  even if you restart the program or the server.
   
 */
