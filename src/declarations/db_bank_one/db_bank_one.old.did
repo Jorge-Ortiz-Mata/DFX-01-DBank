@@ -1,4 +1,5 @@
 service : {
+  compound: () -> () oneway;
   getNumber: () -> (nat) query;
   topDown: (nat) -> () oneway;
   topUp: (nat) -> () oneway;

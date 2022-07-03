@@ -1,6 +1,7 @@
 import type { Principal } from '@dfinity/principal';
 export interface _SERVICE {
-  'getNumber' : () => Promise<bigint>,
-  'topDown' : (arg_0: bigint) => Promise<undefined>,
-  'topUp' : (arg_0: bigint) => Promise<undefined>,
+  'compound' : () => Promise<undefined>,
+  'getNumber' : () => Promise<number>,
+  'topDown' : (arg_0: number) => Promise<undefined>,
+  'topUp' : (arg_0: number) => Promise<undefined>,
 }

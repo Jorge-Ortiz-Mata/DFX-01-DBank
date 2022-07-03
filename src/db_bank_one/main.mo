@@ -1,25 +1,20 @@
 import Debug "mo:base/Debug";
+import Time "mo:base/Time";
+import Float "mo:base/Float";
 
 actor DBank {
-  // var name = "Jorge Ortiz";
-  // let age = 25;
-  stable var number: Nat = 300;
-  // making some changes
+ 
+  stable var number: Float = 300;
 
-  // Debug.print(debug_show(name));
-  // Debug.print(debug_show(age));
+  stable var startTime = Time.now();
 
-  // name := "Zaira Guevara";
-
-  // Debug.print(debug_show(name));
-
-  public func topUp(amount: Nat) {
+  public func topUp(amount: Float) {
     number += amount;
     Debug.print(debug_show(number));
   };
 
-  public func topDown(amount: Nat) {
-    let tempValue: Int = number - amount;
+  public func topDown(amount: Float) {
+    let tempValue: Float = number - amount;
     if (tempValue >= 0){ 
       number -= amount;
       Debug.print(debug_show(number));
@@ -28,8 +23,16 @@ actor DBank {
     }
   };
 
-  public query func getNumber(): async Nat {
+  public query func getNumber(): async Float {
     return number;
+  };
+
+  public func compound(){
+    let currentTime = Time.now();
+    let timeElapsedNS = currentTime - startTime;
+    let timeElapsedNSNew = timeElapsedNS / 1000000000;
+    number := number * (1.01 ** Float.fromInt(timeElapsedNSNew));
+    startTime := currentTime;
   };
 }
 
