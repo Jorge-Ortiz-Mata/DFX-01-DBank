@@ -18,11 +18,15 @@ actor DBank {
   };
 
   public func topDown(amount: Nat) {
-    number -= amount;
-    Debug.print(debug_show(number));
+    let tempValue: Int = number - amount;
+    if (tempValue >= 0){ 
+      number -= amount;
+      Debug.print(debug_show(number));
+    } else {
+      Debug.print("Hey, the result is not a natural value.");
+    }
   };
 
-  // topUp();
 }
 
 /* 
@@ -39,5 +43,10 @@ actor DBank {
     * Go to http://127.0.0.1:8000/?canisterId=CANISTER_ID
     * Run: dfx canister id db_bank_one.
     * Insert that ID in the field shown.
+
+  It shows an error once the value is under 0, so, we added an IF-ELSE
+  statment in order to not make the application fail.
+  Besides, we don't need to add 'debug_show' in order to show 
+  messages.
   
 */
