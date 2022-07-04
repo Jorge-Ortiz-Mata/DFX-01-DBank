@@ -1,19 +1,34 @@
 import { db_bank_one } from "../../declarations/db_bank_one";
 
-document.querySelector("form").addEventListener("submit", async (e) => {
-  e.preventDefault();
-  const button = e.target.querySelector("button");
+window.addEventListener("load", async () => {
+  getValueNumber();
+});
 
-  const name = document.getElementById("name").value.toString();
+document.querySelector("form").addEventListener("submit", async (event) => {
+  event.preventDefault();
+
+  const button = event.target.querySelector("#submit-btn");
+
+  const inputAmount = parseFloat(document.getElementById("input-amount").value);
+  const outputAmount = parseFloat(document.getElementById("output-amount").value);
 
   button.setAttribute("disabled", true);
 
-  // Interact with foo actor, calling the greet method
-  const greeting = await db_bank_one.greet(name);
+  if(inputAmount){
+    await db_bank_one.topUp(inputAmount);
+  } else if(outputAmount) {
+    await db_bank_one.topDown(outputAmount);
+  }
 
+  // await db_bank_one.compound();
+
+  getValueNumber();
+  document.getElementById("input-amount").value = "";
+  document.getElementById("output-amount").value = "";
   button.removeAttribute("disabled");
-
-  document.getElementById("greeting").innerText = greeting;
-
-  return false;
 });
+
+async function getValueNumber(){
+  const value = await db_bank_one.getNumber();
+  document.getElementById("value").innerHTML = Number(value).toFixed(2);  
+};

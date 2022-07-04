@@ -10,7 +10,6 @@ actor DBank {
 
   public func topUp(amount: Float) {
     number += amount;
-    Debug.print(debug_show(number));
   };
 
   public func topDown(amount: Float) {
@@ -18,8 +17,6 @@ actor DBank {
     if (tempValue >= 0){ 
       number -= amount;
       Debug.print(debug_show(number));
-    } else {
-      Debug.print("Hey, the result is not a natural value.");
     }
   };
 

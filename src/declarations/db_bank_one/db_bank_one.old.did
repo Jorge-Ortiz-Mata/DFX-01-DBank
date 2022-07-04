@@ -1,6 +1,6 @@
 service : {
   compound: () -> () oneway;
-  getNumber: () -> (nat) query;
-  topDown: (nat) -> () oneway;
-  topUp: (nat) -> () oneway;
+  getNumber: () -> (float64) query;
+  topDown: (float64) -> () oneway;
+  topUp: (float64) -> () oneway;
 }
